@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="icon" href="semion.jpg" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Огузкод</title>
+    <style>
+        * {
+            font-family: 'ComicSans', sans-serif;
+            margin: 20px;
+        }
+        #video {
+            display: none;
+            margin-top: 20px;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+        @font-face {
+            font-family: 'ComicSans'; /* Название вашего шрифта */
+            src: url('ComicSansMSBold.ttf') format('truetype'); /* Путь к файлу шрифта */
+        }
+        body::before {
+            content: '';
+            position: absolute; /* Абсолютное позиционирование */
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('semion.jpg'); /* Указываем путь к изображению */
+            background-size: cover; /* Масштабируем изображение, чтобы оно заполнило весь экран */
+            opacity: 0.3; /* Устанавливаем прозрачность на 50% */
+            z-index: -1; /* Помещаем псевдоэлемент ниже других элементов */
+            width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Введите 15-значный Огузкод</h1> 
+    <input type="text" id="codeInput" maxlength="15" placeholder="Введите Огузкод" />
+    <button id="submitButton">Проверить</button>
+    <button style="float:right; opacity:0.09" id = "hintButton">Нужна подсказка, огузкодеры?</button>
+    <div id="message" class="error"></div>
+    
+    <div id="video">
+        <video width="600" controls>
+            <source src="get cube bugged lol.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео.
+        </video>
+    </div>
+
+    <script>
+        const names = ['Дима','Паша','Семён','Кирилл','Андрей']
+        const correctCode = "420692281337123"; // Замените на нужный вам код
+        const submitButton = document.getElementById('submitButton');
+        const codeInput = document.getElementById('codeInput');
+        const messageDiv = document.getElementById('message');
+        const videoDiv = document.getElementById('video');
+        const video = document.getElementById('MyVideo');
+        const hintButton = document.getElementById("hintButton");
+        let x = 1
+        let exclamationMarks = "!"
+
+        submitButton.addEventListener('click', function() {
+            const userInput = codeInput.value;
+
+            if (userInput === correctCode) {
+                videoDiv.style.display = 'block';
+                messageDiv.textContent = 'легенды! скину 50р тому кто догадался первый';
+            } else {
+                messageDiv.textContent = 'Как банально! Ты серьёзно думал, что это ' + userInput + ', ' + "огузок " + names[Math.floor(Math.random() * 5)] + '?';
+                videoDiv.style.display = 'none';
+            }
+        });
+
+        hintButton.addEventListener('click', function() {
+            messageDiv.textContent = "Вы огузки" + exclamationMarks
+            exclamationMarks +="!"
+            x+=1
+            if(x == 12)
+        {
+            messageDiv.textContent = "Чекайте первые буквы ваших званий в дамашке братвы."
+        }
+        });
+    </script>
+
+</body>
+</html>
